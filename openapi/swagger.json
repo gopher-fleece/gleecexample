@@ -1,0 +1,47 @@
+{
+  "components": {
+    "schemas": {
+      "Rfc7807Error": {
+        "description": "TBD ERROR DESCRIPTION",
+        "properties": {
+          "code": {
+            "description": "TBD ERROR CODE DESCRIPTION",
+            "type": "integer"
+          }
+        },
+        "title": "Rfc7807Error",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "description": "API Key for accessing the API",
+        "in": "header",
+        "name": "apiKey",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "email": "hello@haim-kastner.com",
+      "name": "API Support",
+      "url": "https://github/gopher-fleece/gleece/issues"
+    },
+    "description": "This is an example API for Gleece to demonstrate the API generation and documentation capabilities.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "termsOfService": "http://example.com/terms/",
+    "title": "Gleece Example API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {},
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ]
+}
