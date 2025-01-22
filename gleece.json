@@ -1,0 +1,49 @@
+{
+  "routesConfig": {
+    "engine": "gin",
+    "outputPath": "./routers/generated-gleece.go"
+  },
+  "openAPIGeneratorConfig": {
+    "info": {
+      "title": "Gleece Example API",
+      "description": "This is an example API for Gleece to demonstrate the API generation and documentation capabilities.",
+      "termsOfService": "http://example.com/terms/",
+      "contact": {
+        "name": "API Support",
+        "url": "https://github/gopher-fleece/gleece/issues",
+        "email": "hello@haim-kastner.com"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      },
+      "version": "1.0.0"
+    },
+    "base_url": "http://localhost:8080",
+    "securitySchemes": [
+      {
+        "description": "API Key for accessing the API",
+        "name": "apiKeyAuth",
+        "fieldName": "apiKey",
+        "type": "apiKey",
+        "in": "header"
+      }
+    ],
+    "defaultSecurity": [
+      {
+        "securityMethod": [
+          {
+            "name": "apiKeyAuth",
+            "permissions": [
+              "read",
+              "write"
+            ]
+          }
+        ]
+      }
+    ],
+    "specGeneratorConfig": {
+      "outputPath": "./openapi/swagger.json"
+    }
+  }
+}
