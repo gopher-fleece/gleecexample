@@ -68,6 +68,8 @@ github.com/gopher-fleece/gleece v0.0.0-20250123063418-5cca290a2a59 h1:slavoE1GWm
 github.com/gopher-fleece/gleece v0.0.0-20250123063418-5cca290a2a59/go.mod h1:hfbgzj5GE+UQJ2lORH5QSG0uRyaIvZvq4hm4cGs40e0=
 github.com/gopher-fleece/gleece v0.0.0-20250123065226-75cfb5847411 h1:5pfxajDUTyHO/vTCxpgJfgKKu++Oc7ob7V2QtS65Kes=
 github.com/gopher-fleece/gleece v0.0.0-20250123065226-75cfb5847411/go.mod h1:hfbgzj5GE+UQJ2lORH5QSG0uRyaIvZvq4hm4cGs40e0=
+github.com/gopher-fleece/gleece v0.0.0-20250123080759-24420e04318a h1:stDFFo/0RIZFX10/BAyp3Im1rG1eAcNKFwr+kg/gi/0=
+github.com/gopher-fleece/gleece v0.0.0-20250123080759-24420e04318a/go.mod h1:hfbgzj5GE+UQJ2lORH5QSG0uRyaIvZvq4hm4cGs40e0=
 github.com/iancoleman/strcase v0.3.0 h1:nTXanmYxhfFAMjZL34Ov6gkzEsSJZ5DbhxWjvSASxEI=
 github.com/iancoleman/strcase v0.3.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47ZCWhYzw7ho=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=

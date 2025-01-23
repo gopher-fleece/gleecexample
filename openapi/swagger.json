@@ -150,11 +150,22 @@
         ]
       }
     },
-    "/users/user/{user_name}": {
+    "/users/user/{user_name}/{user_id}": {
       "post": {
         "description": "Create a new user",
         "operationId": "CreateNewUser",
         "parameters": [
+          {
+            "description": "The user's ID",
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": true,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
           {
             "description": "The user's email",
             "in": "query",

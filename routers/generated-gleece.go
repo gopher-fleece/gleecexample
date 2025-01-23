@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"reflect"
 	"regexp"
+	"strconv"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/gopher-fleece/gleece/external"
@@ -52,18 +54,38 @@ func toGinUrl(url string) string {
 func RegisterRoutes(engine *gin.Engine) {
 	validatorInstance = validator.New()
 	// UsersController
-	engine.POST(toGinUrl("/users/user/{user_name}"), func(ctx *gin.Context) {
+	engine.POST(toGinUrl("/users/user/{user_name}/{user_id}"), func(ctx *gin.Context) {
 		controller := UsersControllerImport.UsersController{}
 		controller.SetRequest(ctx)
+		idRaw := ctx.Param("user_id")
+		idUint64, err := strconv.Atoi(idRaw)
+		if err != nil {
+			validationError := external.Rfc7807Error{
+				Type: http.StatusText(http.StatusUnprocessableEntity),
+				Detail: fmt.Sprintf(
+					"A request was made to operation 'CreateNewUser' but parameter %s did not pass validation - Expected %s but got %s",
+					"id",
+					"int",
+					reflect.TypeOf(idRaw).String(),
+				),
+				Status:     http.StatusUnprocessableEntity,
+				Instance:   "/gleece/validation/UsersController/CreateNewUser",
+				Extensions: map[string]string{"error": err.Error()},
+			}
+			ctx.JSON(http.StatusUnprocessableEntity, validationError)
+			return
+		}
+		id := int(idUint64)
+		// Pass to validator
 		emailRaw := ctx.Query("email")
 		email := emailRaw
-		nameRaw := ctx.Param("name")
+		nameRaw := ctx.Param("user_name")
 		name := nameRaw
-		originRaw := ctx.GetHeader("origin")
+		originRaw := ctx.GetHeader("x-origin")
 		origin := originRaw
 		traceRaw := ctx.GetHeader("trace")
 		trace := traceRaw
-		value, opError := controller.CreateNewUser(email, name, origin, trace)
+		value, opError := controller.CreateNewUser(id, email, name, origin, trace)
 		statusCode := getStatusCode(&controller, true, opError)
 		ctx.Header("Content-Type", "application/json")
 		if opError != nil {
