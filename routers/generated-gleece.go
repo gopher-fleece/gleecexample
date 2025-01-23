@@ -4,11 +4,14 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"regexp"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/gopher-fleece/gleece/external"
+	UsersControllerImport "github.com/gopher-fleece/gleecexample/controllers"
 )
 var validatorInstance *validator.Validate
+var urlParamRegex = regexp.MustCompile(`\{([\w\d-_]+)\}`)
 func getStatusCode(controller external.Controller, hasReturnValue bool, err error) int {
 	if controller.GetStatus() != nil {
 		return int(*controller.GetStatus())
@@ -17,9 +20,9 @@ func getStatusCode(controller external.Controller, hasReturnValue bool, err erro
 		return http.StatusInternalServerError
 	}
 	if hasReturnValue {
-		return http.StatusNoContent
+		return http.StatusOK
 	}
-	return http.StatusOK
+	return http.StatusNoContent
 }
 func bindAndValidateBody[TOutput any](ctx *gin.Context, contentType string, output *TOutput) error {
 	var err error
@@ -43,6 +46,58 @@ func bindAndValidateBody[TOutput any](ctx *gin.Context, contentType string, outp
 	output = &deserializedOutput
 	return nil
 }
+func toGinUrl(url string) string {
+	return urlParamRegex.ReplaceAllString(url, ":$1")
+}
 func RegisterRoutes(engine *gin.Engine) {
 	validatorInstance = validator.New()
+	// UsersController
+	engine.POST(toGinUrl("/users/user/{user_name}"), func(ctx *gin.Context) {
+		controller := UsersControllerImport.UsersController{}
+		controller.SetRequest(ctx)
+		emailRaw := ctx.Query("email")
+		email := emailRaw
+		nameRaw := ctx.Param("name")
+		name := nameRaw
+		originRaw := ctx.GetHeader("origin")
+		origin := originRaw
+		traceRaw := ctx.GetHeader("trace")
+		trace := traceRaw
+		value, opError := controller.CreateNewUser(email, name, origin, trace)
+		statusCode := getStatusCode(&controller, true, opError)
+		ctx.Header("Content-Type", "application/json")
+		if opError != nil {
+			stdError := external.Rfc7807Error{
+				Type:       http.StatusText(statusCode),
+				Detail:     "Encountered an error during operation 'CreateNewUser'",
+				Status:     statusCode,
+				Instance:   "/gleece//CreateNewUser",
+				Extensions: map[string]string{"error": opError.Error()},
+			}
+			ctx.JSON(statusCode, stdError)
+			return
+		}
+		ctx.JSON(statusCode, value)
+	})
+	engine.GET(toGinUrl("/users/domicile/{id}"), func(ctx *gin.Context) {
+		controller := UsersControllerImport.UsersController{}
+		controller.SetRequest(ctx)
+		idRaw := ctx.Param("id")
+		id := idRaw
+		value, opError := controller.GetUserDomicile(id)
+		statusCode := getStatusCode(&controller, true, opError)
+		ctx.Header("Content-Type", "application/json")
+		if opError != nil {
+			stdError := external.Rfc7807Error{
+				Type:       http.StatusText(statusCode),
+				Detail:     "Encountered an error during operation 'GetUserDomicile'",
+				Status:     statusCode,
+				Instance:   "/gleece//GetUserDomicile",
+				Extensions: map[string]string{"error": opError.Error()},
+			}
+			ctx.JSON(statusCode, stdError)
+			return
+		}
+		ctx.JSON(statusCode, value)
+	})
 }

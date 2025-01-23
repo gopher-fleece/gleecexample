@@ -21,29 +21,31 @@
     },
     "base_url": "http://localhost:8080",
     "securitySchemes": [
-      {
-        "description": "API Key for accessing the API",
-        "name": "apiKeyAuth",
-        "fieldName": "apiKey",
-        "type": "apiKey",
-        "in": "header"
-      }
-    ],
+			{
+				"description": "API Key for accessing the API",
+				"name": "securitySchemaName",
+				"fieldName": "x-header-name",
+				"type": "apiKey",
+				"in": "header"
+			}
+		],
     "defaultSecurity": [
-      {
-        "securityMethod": [
-          {
-            "name": "apiKeyAuth",
-            "permissions": [
-              "read",
-              "write"
-            ]
-          }
-        ]
-      }
-    ],
+			{
+				"securityMethod": [
+					{
+						"name": "securitySchemaName",
+						"scopes": [
+							"read",
+							"write"
+						]
+					}
+				]
+			}
+		],
     "specGeneratorConfig": {
       "outputPath": "./openapi/swagger.json"
     }
+  },
+  "commonConfig": {
   }
 }
