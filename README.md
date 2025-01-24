@@ -1,9 +1,12 @@
-# Example Golang REST API using Gleece
+# 🎯 Example Golang REST API using Gleece
 
 A minimal example demonstrating how to build a REST API service using the Gleece library in Go.
 
-## 🚀 Features
+## ✨ Features
 
-- Fully featured REST API [controller](./controllers/gleecexample.ctrl.go) implementation
-- Auto generated [OpenAPI v3](./openapi/swagger.json) specification 
-- Auto generated [gin](https://github.com/gin-gonic/gin) [routers](./routers/generated-gleece.go) with  [Go-playground](https://github.com/go-playground/validator) validation
+- 🛠️ Fully featured REST API [Controller](./controllers/gleecexample.ctrl.go) implementation
+- 📚 Auto-generated [OpenAPI v3](./openapi/swagger.json) specification 
+- 🔄 Auto-generated [routes](./routes/generated-gleece.go) for [gin](https://github.com/gin-gonic/gin) using [Go-playground](https://github.com/go-playground/validator) validation
+- ✅ Custom validation with [ValidateStartsWithLetter](./validators/custom.validators.go)
+- 🔐 Authentication implementation in [security](./security/authentication.go) for authorization
+<!-- - 🔄 GitHub Actions [`CI/CD`]() pipeline for testing & building service -->

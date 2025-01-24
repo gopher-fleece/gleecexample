@@ -142,6 +142,11 @@
             "securitySchemaName": [
               "read:users"
             ]
+          },
+          {
+            "securitySchemaName": [
+              "read:all_data"
+            ]
           }
         ],
         "summary": "Get user's domicile",
@@ -150,7 +155,7 @@
         ]
       }
     },
-    "/users/user/{user_name}/{user_id}": {
+    "/users/user/{user_name}/{user_id}/{serial}": {
       "post": {
         "description": "Create a new user",
         "operationId": "CreateNewUser",
@@ -163,6 +168,16 @@
             "schema": {
               "exclusiveMinimum": true,
               "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The user's serial number",
+            "in": "path",
+            "name": "serial",
+            "required": true,
+            "schema": {
+              "minimum": 10,
               "type": "integer"
             }
           },
@@ -204,6 +219,17 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Domicile"
+              }
+            }
+          },
+          "description": "The user's domicile",
+          "required": true
+        },
         "responses": {
           "200": {
             "content": {

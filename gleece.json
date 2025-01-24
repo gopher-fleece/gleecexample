@@ -1,7 +1,17 @@
 {
   "routesConfig": {
     "engine": "gin",
-    "outputPath": "./routers/generated-gleece.go"
+    "outputPath": "./routes/generated-gleece.go",
+    "customValidators": [
+			{
+				"validateTagName": "validate_starts_with_letter",
+				"functionName": "ValidateStartsWithLetter",
+				"fullPackageName": "github.com/gopher-fleece/gleecexample/validators"
+			}
+		],
+    "authorizationFunctionConfig": {
+			"fullPackageName": "github.com/gopher-fleece/gleecexample/security"
+		}
   },
   "openAPIGeneratorConfig": {
     "info": {

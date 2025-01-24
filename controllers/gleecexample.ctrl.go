@@ -23,16 +23,18 @@ type Domicile struct {
 
 // @Description Create a new user
 // @Method(POST) This text is not part of the OpenAPI spec
-// @Route(/user/{user_name}/{user_id}) Same here
+// @Route(/user/{user_name}/{user_id}/{serial}) Same here
 // @Query(email, { validate: "required,email" }) The user's email
 // @Path(id, { name: "user_id", validate:"gt=1" }) The user's ID
+// @Path(serial, { validate:"gte=10" }) The user's serial number
 // @Path(name, { name: "user_name" }) The user's name
-// @Header(origin, { name: "x-origin" }) The request origin
+// @Body(domicile) The user's domicile
+// @Header(origin, { name: "x-origin", validate: "validate_starts_with_letter" }) The request origin
 // @Header(trace) The trace info
 // @Response(200) The ID of the newly created user
 // @ErrorResponse(500) The error when process failed
 // @Security(securitySchemaName, { scopes: ["read:users", "write:users"] })
-func (ec *UsersController) CreateNewUser(id int, email string, name string, origin string, trace string) (string, error) {
+func (ec *UsersController) CreateNewUser(id int, serial int, email string, name string, origin string, trace string, domicile Domicile) (string, error) {
 	userId := uuid.New()
 	return userId.String(), nil
 }
@@ -44,7 +46,8 @@ func (ec *UsersController) CreateNewUser(id int, email string, name string, orig
 // @Response(200) The user's domicile
 // @ErrorResponse(404) The user not found
 // @ErrorResponse(500) The error when process failed
-// @Security(securitySchemaName, { scopes: ["read:users"] })
+// @Security(securitySchemaName, { scopes: ["read:users" ] }) Consumer should pass this security schema
+// @Security(securitySchemaName, { scopes: ["read:all_data"] }) -OR- that one
 func (ec *UsersController) GetUserDomicile(id string) (Domicile, error) {
 	return Domicile{
 		Address:     "221B Baker Street, London",
