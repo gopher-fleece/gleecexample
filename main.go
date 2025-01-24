@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,9 +10,24 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+//go:embed openapi/swagger.json
+var swaggerSpec embed.FS
+
 // Handler to serve the Swagger spec file
 func serveSwaggerSpec(c *gin.Context) {
-	c.File("openapi/swagger.json")
+	// Read the embedded swagger.json file
+	specData, err := swaggerSpec.ReadFile("openapi/swagger.json")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Failed to read swagger spec",
+		})
+		return
+	}
+
+	// Set the content type to application/json
+	c.Header("Content-Type", "application/json")
+	// Write the spec data directly to the response
+	c.Writer.Write(specData)
 }
 
 func main() {
