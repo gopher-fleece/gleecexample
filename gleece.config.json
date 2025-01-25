@@ -9,8 +9,9 @@
 				"fullPackageName": "github.com/gopher-fleece/gleecexample/validators"
 			}
 		],
-    "authorizationFunctionConfig": {
-			"fullPackageName": "github.com/gopher-fleece/gleecexample/security"
+    "authorizationConfig": {
+			"authFileFullPackageName": "github.com/gopher-fleece/gleecexample/security",
+			"enforceSecurityOnAllRoutes": true
 		}
   },
   "openAPIGeneratorConfig": {
@@ -29,7 +30,7 @@
       },
       "version": "1.0.0"
     },
-    "base_url": "http://localhost:8080",
+    "baseUrl": "http://localhost:8080",
     "securitySchemes": [
 			{
 				"description": "API Key for accessing the API",
