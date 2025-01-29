@@ -30,11 +30,13 @@ type Domicile struct {
 // @Path(name, { name: "user_name" }) The user's name
 // @Body(domicile) The user's domicile
 // @Header(origin, { name: "x-origin", validate: "validate_starts_with_letter" }) The request origin
+// @Header(option, { name: "x-option" }) The request option header
 // @Header(trace) The trace info
 // @Response(200) The ID of the newly created user
 // @ErrorResponse(500) The error when process failed
 // @Security(securitySchemaName, { scopes: ["read:users", "write:users"] })
-func (ec *UsersController) CreateNewUser(id int, serial int, email string, name string, origin string, trace string, domicile Domicile) (string, error) {
+func (ec *UsersController) CreateNewUser(id int, serial int, email string, name string, origin string, option *string, trace string, domicile Domicile) (string, error) {
+	ec.SetHeader("x-powered-by", "Gleece")
 	userId := uuid.New()
 	return userId.String(), nil
 }

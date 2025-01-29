@@ -210,6 +210,14 @@
             }
           },
           {
+            "description": "The request option header",
+            "in": "header",
+            "name": "x-option",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "description": "The trace info",
             "in": "header",
             "name": "trace",

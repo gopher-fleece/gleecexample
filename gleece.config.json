@@ -15,6 +15,7 @@
 		}
   },
   "openAPIGeneratorConfig": {
+    "openapi": "3.0.0",
     "info": {
       "title": "Gleece Example API",
       "description": "This is an example API for Gleece to demonstrate the API generation and documentation capabilities.",
