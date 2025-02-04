@@ -12,7 +12,24 @@
     "authorizationConfig": {
 			"authFileFullPackageName": "github.com/gopher-fleece/gleecexample/security",
 			"enforceSecurityOnAllRoutes": true
-		}
+		},
+    "middlewares": [
+      {
+        "fullPackageName": "github.com/gopher-fleece/gleecexample/middlewares",
+        "execution": "beforeOperation",
+        "functionName": "LogBeforeOperationMiddleware"
+      },
+      {
+        "fullPackageName": "github.com/gopher-fleece/gleecexample/middlewares",
+        "execution": "afterOperationSuccess",
+        "functionName": "LogAfterOperationSuccessMiddleware"
+      },
+      {
+        "fullPackageName": "github.com/gopher-fleece/gleecexample/middlewares",
+        "execution": "onError",
+        "functionName": "LogOnErrorMiddleware"
+      }
+    ]
   },
   "openAPIGeneratorConfig": {
     "openapi": "3.0.0",

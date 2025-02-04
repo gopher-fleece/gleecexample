@@ -9,6 +9,7 @@ A minimal example demonstrating how to build a REST API service using the Gleece
 - 📜 Fully featured REST API [Controller](./controllers/gleecexample.ctrl.go) implementation
 - 📖 Auto-generated [OpenAPI v3](./openapi/swagger.json) specification 
 - 🔧 Auto-generated [routes](./routes/generated-gleece.go) for [gin](https://github.com/gin-gonic/gin) with [Go-playground](https://github.com/go-playground/validator) validation
+- 🛡 Authentication implementation in [security](./security/authentication.go) for authorization
 - ✅ Custom validation with [ValidateStartsWithLetter](./validators/custom.validators.go)
-- 🔐 Authentication implementation in [security](./security/authentication.go) for authorization
+- ⚙️ Middlewares with [Log Middleware](./middlewares/log.middlewares.go)
 - 📦 [GitHub Actions](./.github/workflows/build.yml) pipeline for building service
