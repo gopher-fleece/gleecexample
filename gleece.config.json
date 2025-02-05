@@ -58,19 +58,13 @@
 				"in": "header"
 			}
 		],
-    "defaultSecurity": [
-			{
-				"securityMethod": [
-					{
-						"name": "securitySchemaName",
-						"scopes": [
-							"read",
-							"write"
-						]
-					}
-				]
-			}
-		],
+    "defaultSecurity": {
+      "name": "securitySchemaName",
+      "scopes": [
+        "read",
+        "write"
+      ]
+    },
     "specGeneratorConfig": {
       "outputPath": "./openapi/swagger.json"
     }
