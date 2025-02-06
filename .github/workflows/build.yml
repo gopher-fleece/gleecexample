@@ -25,11 +25,11 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-go-
 
-      # - name: Generate Gleece Routes & Spec 
-      #   run: |
-      #     go get github.com/gopher-fleece/gleece
-      #     go install github.com/gopher-fleece/gleece
-      #     gleece
+      - name: Generate Gleece Routes & Spec 
+        run: |
+          go get github.com/gopher-fleece/gleece
+          go install github.com/gopher-fleece/gleece
+          gleece
 
       - name: Build App
         run: |
