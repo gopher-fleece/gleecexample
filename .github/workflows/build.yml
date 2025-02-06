@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate Gleece Routes & Spec 
         run: |
-          # go get github.com/gopher-fleece/gleece
+          go get github.com/gopher-fleece/gleece
           go install github.com/gopher-fleece/gleece
           gleece
 
