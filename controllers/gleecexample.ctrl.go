@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/google/uuid"
-	"github.com/gopher-fleece/gleece/external"
+	"github.com/gopher-fleece/runtime"
 )
 
 // UsersController
@@ -10,7 +10,7 @@ import (
 // @Route(/users)
 // @Description The Users API
 type UsersController struct {
-	external.GleeceController // Embedding the GleeceController to inherit its methods
+	runtime.GleeceController // Embedding the GleeceController to inherit its methods
 }
 
 // @Description User's domicile
