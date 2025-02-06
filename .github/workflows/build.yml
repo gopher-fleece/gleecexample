@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate Gleece Routes & Spec 
         run: |
-          go get github.com/gopher-fleece/gleece
+          # go get github.com/gopher-fleece/gleece
           go install github.com/gopher-fleece/gleece
           gleece
 
@@ -36,11 +36,11 @@ jobs:
           go mod download
           go build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: gleecexample
-          path: |
-            gleecexample
-            openapi/swagger.json
-          retention-days: 7
+      # - name: Upload build artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: gleecexample
+      #     path: |
+      #       gleecexample
+      #       openapi/swagger.json
+      #     retention-days: 7
