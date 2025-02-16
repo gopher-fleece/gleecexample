@@ -12,4 +12,5 @@ A minimal example demonstrating how to build a REST API service using the Gleece
 - 🛡 Authentication implementation in [security](./security/authentication.go) for authorization
 - ✅ Custom validation with [ValidateStartsWithLetter](./validators/custom.validators.go)
 - ⚙️ Middlewares with [Log Middleware](./middlewares/log.middlewares.go)
+- 🚀 Application [Boot Process](./main.go)
 - 📦 [GitHub Actions](./.github/workflows/build.yml) pipeline for building service
