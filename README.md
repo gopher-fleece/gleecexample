@@ -1,6 +1,8 @@
 # 🎯 Example Golang REST API using Gleece
 
-[![Build Gleecexample](https://github.com/gopher-fleece/gleecexample/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/gopher-fleece/gleecexample/actions/workflows/build.yml)
+[![Build Gleecexample](https://github.com/gopher-fleece/gleecexample/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/gopher-fleece/gleecexample/actions/workflows/build.yml) <a href="https://docs.gleece.dev">
+    <img src="https://img.shields.io/badge/docs-gleece.dev-blue" alt="Documentation">
+</a>
 
 A minimal example demonstrating how to build a REST API service using the Gleece library in Go.
 
