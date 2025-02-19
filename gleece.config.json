@@ -3,9 +3,12 @@
     "engine": "gin",
     "outputPath": "./routes/generated-gleece.go",
     "authorizationConfig": {
-			"authFileFullPackageName": "github.com/gopher-fleece/gleecexample/security",
-			"enforceSecurityOnAllRoutes": true
-		}
+      "authFileFullPackageName": "github.com/gopher-fleece/gleecexample/security",
+      "enforceSecurityOnAllRoutes": true
+    },
+    "templateExtensions": {
+      "AfterOperationRoutesExtension": "./assets/after.operation.extension.hbs"
+    }
   },
   "openAPIGeneratorConfig": {
     "openapi": "3.0.0",
@@ -26,14 +29,14 @@
     },
     "baseUrl": "http://localhost:8080",
     "securitySchemes": [
-			{
-				"description": "API Key for accessing the API",
-				"name": "securitySchemaName",
-				"fieldName": "x-header-name",
-				"type": "apiKey",
-				"in": "header"
-			}
-		],
+      {
+        "description": "API Key for accessing the API",
+        "name": "securitySchemaName",
+        "fieldName": "x-header-name",
+        "type": "apiKey",
+        "in": "header"
+      }
+    ],
     "defaultSecurity": {
       "name": "securitySchemaName",
       "scopes": [
@@ -45,6 +48,5 @@
       "outputPath": "./openapi/swagger.json"
     }
   },
-  "commonConfig": {
-  }
+  "commonConfig": {}
 }

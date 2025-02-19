@@ -1,0 +1,8 @@
+if (opError == nil) {
+    resString := ""
+    {{#equal HasReturnValue true}}
+        jsonValue, _ := json.Marshal(value)
+        resString = string(jsonValue)
+    {{/equal}}
+    println("Operation '{{{OperationId}}}' succeeded, response: ", resString)
+}
