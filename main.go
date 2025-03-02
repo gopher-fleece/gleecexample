@@ -53,6 +53,7 @@ func main() {
 	routes.RegisterMiddleware(runtime.BeforeOperation, middlewares.LogBeforeOperationMiddleware)
 	routes.RegisterMiddleware(runtime.AfterOperationSuccess, middlewares.LogAfterOperationSuccessMiddleware)
 	routes.RegisterErrorMiddleware(runtime.OnOperationError, middlewares.LogOnErrorMiddleware)
+	routes.RegisterErrorMiddleware(runtime.OnInputValidationError, middlewares.LogOnValidationErrorMiddleware)
 	// Register the the Gleece generated routes
 	routes.RegisterRoutes(router)
 
