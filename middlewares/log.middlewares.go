@@ -1,25 +1,29 @@
 package middlewares
 
 import (
+	"context"
+
 	"github.com/gin-gonic/gin"
 )
 
-func LogBeforeOperationMiddleware(ctx *gin.Context) bool {
-	println("Method: ", ctx.Request.Method, " Path: ", ctx.Request.URL.Path, " arrived")
-	return true
+func LogBeforeOperationMiddleware(ctx context.Context, ginCtx *gin.Context) (context.Context, bool) {
+	println("Method: ", ginCtx.Request.Method, " Path: ", ginCtx.Request.URL.Path, " arrived")
+	// An example of loading contextual data on the context
+	ctx = context.WithValue(ctx, "user", ginCtx.GetHeader("user"))
+	return ctx, true
 }
 
-func LogAfterOperationSuccessMiddleware(ctx *gin.Context) bool {
-	println("Method: ", ctx.Request.Method, " Path: ", ctx.Request.URL.Path, " completed")
-	return true
+func LogAfterOperationSuccessMiddleware(ctx context.Context, ginCtx *gin.Context) (context.Context, bool) {
+	println("Method: ", ginCtx.Request.Method, " Path: ", ginCtx.Request.URL.Path, " completed")
+	return ctx, true
 }
 
-func LogOnErrorMiddleware(ctx *gin.Context, err error) bool {
-	println("Method: ", ctx.Request.Method, " Path: ", ctx.Request.URL.Path, " failed with error: ", err.Error())
-	return true
+func LogOnErrorMiddleware(ctx context.Context, ginCtx *gin.Context, err error) (context.Context, bool) {
+	println("Method: ", ginCtx.Request.Method, " Path: ", ginCtx.Request.URL.Path, " failed with error: ", err.Error())
+	return ctx, true
 }
 
-func LogOnValidationErrorMiddleware(ctx *gin.Context, err error) bool {
-	println("Method: ", ctx.Request.Method, " Path: ", ctx.Request.URL.Path, " input validation failed: ", err.Error())
-	return true
+func LogOnValidationErrorMiddleware(ctx context.Context, ginCtx *gin.Context, err error) (context.Context, bool) {
+	println("Method: ", ginCtx.Request.Method, " Path: ", ginCtx.Request.URL.Path, " input validation failed: ", err.Error())
+	return ctx, true
 }
